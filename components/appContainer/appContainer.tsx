@@ -53,7 +53,7 @@ const RightSideBar = styled.div``;
 
 const Wrapper = styled.div`
   --main-min-width: min(500px, 100%);
-  --main-max-width: min(720px, 100%);
+  --main-max-width: min(850px, 100%);
   --main-actual-width: max(var(--main-min-width), var(--main-max-width));
   --nav-width: calc((100% - var(--main-actual-width)) / 2);
 
