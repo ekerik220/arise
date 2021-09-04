@@ -19,5 +19,6 @@ export const GlobalStyles = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+    line-height: 1.6;
   }
 `;
