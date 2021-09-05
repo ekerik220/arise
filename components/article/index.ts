@@ -1,2 +1,2 @@
-export * from "./article";
-export * from "./articleHeader";
+export * from './article';
+export * from './articleHeader';

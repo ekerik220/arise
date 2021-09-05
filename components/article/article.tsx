@@ -1,17 +1,9 @@
-import styled from "styled-components";
-import { theme } from "styles/theme";
+import styles from "./article.module.scss";
 
-export const Article = styled.article`
-  padding: 0 60px;
+import { FC } from "react";
 
-  p {
-    font-size: 18px;
-    margin-top: 15px;
-  }
+interface Props {}
 
-  em {
-    font-family: ${theme.fonts.emphasis};
-    color: ${theme.colors.emphasis};
-    font-style: normal;
-  }
-`;
+export const Article: FC<Props> = ({ children }) => {
+  return <article className={styles.container}>{children}</article>;
+};

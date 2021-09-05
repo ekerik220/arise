@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
-import { GlobalStyles } from "styles/globalStyles";
-import { ThemeProvider } from "styles/theme";
 import Head from "next/head";
+import "styles/theme.scss";
+import "styles/globalStyles.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -13,8 +13,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="Tales of Aselia guides and mechanics information."
         />
       </Head>
-      <ThemeProvider />
-      <GlobalStyles />
       <Component {...pageProps} />
     </>
   );

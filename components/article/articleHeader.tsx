@@ -1,6 +1,5 @@
 import { FC } from "react";
-import styled from "styled-components";
-import { theme } from "styles/theme";
+import styles from "./articleHeader.module.scss";
 
 interface Props {
   title: string;
@@ -9,26 +8,9 @@ interface Props {
 
 export const ArticleHeader: FC<Props> = ({ title, subtitle }) => {
   return (
-    <Wrapper>
-      <Title>{title}</Title>
-      {subtitle && <Subtitle>{subtitle}</Subtitle>}
-    </Wrapper>
+    <header className={styles.container}>
+      <h1 className={styles.title}>{title}</h1>
+      {subtitle && <span className={styles.subTitle}>{subtitle}</span>}
+    </header>
   );
 };
-
-const Wrapper = styled.header`
-  display: flex;
-  flex-direction: column;
-  border-bottom: 2px solid ${theme.colors.line};
-`;
-
-const Title = styled.h1`
-  margin: 30px 0 0 0;
-  font-size: 40px;
-  font-weight: 500;
-`;
-
-const Subtitle = styled.span`
-  color: ${theme.colors.subText};
-  padding-bottom: 15px;
-`;

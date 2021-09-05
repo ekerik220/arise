@@ -1,0 +1,68 @@
+@import "styles/theme";
+
+.container {
+  position: relative;
+  margin: 64px -32px;
+  padding: 24px 32px;
+  border-left: 3px solid;
+  border-radius: 6px 6px 6px 3px;
+}
+
+.container-info {
+  @extend .container;
+  background: $colors-infoBG;
+  border-left-color: $colors-info;
+}
+
+.container-success {
+  @extend .container;
+  background: $colors-successBG;
+  border-left-color: $colors-success;
+}
+
+.container-alert {
+  @extend .container;
+  background: $colors-alertBG;
+  border-left-color: $colors-alert;
+}
+
+.icon-frame {
+  $size: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -0.5 * $size;
+  left: -0.5 * $size;
+  background: black;
+  width: $size;
+  height: $size;
+  border-radius: 100%;
+  background: $colors-background;
+}
+
+.icon-frame-alert {
+  @extend .icon-frame;
+  border-radius: 25%;
+}
+
+.icon {
+  $size: 32px;
+  width: $size;
+  height: $size;
+}
+
+.icon-info {
+  @extend .icon;
+  color: $colors-info;
+}
+
+.icon-success {
+  @extend .icon;
+  color: $colors-success;
+}
+
+.icon-alert {
+  @extend .icon;
+  color: $colors-alert;
+}

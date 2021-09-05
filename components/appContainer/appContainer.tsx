@@ -1,11 +1,10 @@
 import React, { FC, ReactElement, useMemo } from "react";
-import styled, { StyledComponent } from "styled-components";
-import { theme } from "styles/theme";
 import { SideNav } from "components/appContainer/sideNav";
+import styles from "./appContainer.module.scss";
 
 interface AppContainerComposition {
-  LeftSideBar: StyledComponent<"div", any, {}, never>;
-  RightSideBar: StyledComponent<"div", any, {}, never>;
+  LeftSideBar: FC;
+  RightSideBar: FC;
 }
 
 interface Props {}
@@ -27,51 +26,28 @@ export const AppContainer: FC<Props> & AppContainerComposition = ({
 
     React.Children.forEach(children, (child) => {
       const item = child as ReactElement;
+
       if (item.type === LeftSideBar) leftBarChildren.push(item.props.children);
-      else if (item.type === RightSideBar)
+      else if (item.type === RightSideBar) {
         rightBarChildren.push(item.props.children);
-      else mainChildren.push(item);
+      } else mainChildren.push(item);
     });
 
     return { mainChildren, leftBarChildren, rightBarChildren };
   }, [children]);
 
   return (
-    <Wrapper>
-      <LeftSideBar>
+    <div className={styles.container}>
+      <section className={styles.leftSidebar}>
         {leftBarChildren.length > 0 ? leftBarChildren : <SideNav />}
-      </LeftSideBar>
-      <MainContent>{mainChildren}</MainContent>
-      <RightSideBar>{rightBarChildren}</RightSideBar>
-    </Wrapper>
+      </section>
+      <main className={styles.mainContent}>{mainChildren}</main>
+      <section>{rightBarChildren}</section>
+    </div>
   );
 };
 
-const MainContent = styled.main``;
-const LeftSideBar = styled.div``;
-const RightSideBar = styled.div``;
-
-const Wrapper = styled.div`
-  --main-min-width: min(500px, 100%);
-  --main-max-width: min(850px, 100%);
-  --main-actual-width: max(var(--main-min-width), var(--main-max-width));
-  --nav-width: calc((100% - var(--main-actual-width)) / 2);
-
-  display: flex;
-
-  ${LeftSideBar} {
-    position: fixed;
-    left: 0;
-    width: var(--nav-width);
-    height: 100vh;
-    background: ${theme.colors.backgroundSecondary};
-  }
-
-  ${MainContent} {
-    width: var(--main-actual-width);
-    margin-left: var(--nav-width);
-  }
-`;
-
+const LeftSideBar: FC = ({ children }) => <section>{children}</section>;
+const RightSideBar: FC = ({ children }) => <section>{children}</section>;
 AppContainer.LeftSideBar = LeftSideBar;
 AppContainer.RightSideBar = RightSideBar;
